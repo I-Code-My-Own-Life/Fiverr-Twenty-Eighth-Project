@@ -1,9 +1,12 @@
 // Pac-Man Game in p5.js
 let brickImg;
 let font1;
+let enemyImg;
 function preload() {
     // brickImg = loadImage("wall.png");
-    brickImg = loadImage("wall4.png");
+    brickImg = loadImage("Assets/wall4.png");
+    enemyImg = loadImage("Assets/enemy2.png");
+    // Loading our font : 
     font1 = loadFont("Fonts/font1.ttf");
 }
 // Our canvas variable : 
@@ -79,8 +82,8 @@ class Pacman {
         fill("yellow");
         translate(this.position.x, this.position.y);
         rotate(this.rotation);
-        translate(-this.position.x,-this.position.y);
-        arc(this.position.x, this.position.y, this.radius * 2, this.radius * 2 , 0.2 * PI, 1.8 * PI, PIE);
+        translate(-this.position.x, -this.position.y);
+        arc(this.position.x, this.position.y, this.radius * 2, this.radius * 2, 0.2 * PI, 1.8 * PI, PIE);
         pop();
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -95,8 +98,9 @@ class Enemy {
         this.prevCollisions = [];
     }
     draw() {
-        fill("red");
+        fill("rgba(0,0,0,0.1)");
         circle(this.position.x, this.position.y, this.radius * 2);
+        image(enemyImg, this.position.x - this.radius, this.position.y - this.radius, 30, 30);
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
     }
@@ -154,7 +158,7 @@ map.forEach((row, i) => {
                 break;
         }
     })
-})  
+})
 
 // Creating our player : 
 const pacman = new Pacman({ position: { x: Boundary.width * 6.5, y: Boundary.height * (yCenter + 1.5) }, velocity: { x: 0, y: 0 } });
@@ -246,9 +250,9 @@ function draw() {
             score++;
         }
     }
-    enemies.forEach((enemy,i) => {
+    enemies.forEach((enemy, i) => {
         enemy.draw();
-        if (Math.hypot(enemy.position.x - pacman.position.x, enemy.position.y - pacman.position.y) < enemy.radius + pacman.radius){
+        if (Math.hypot(enemy.position.x - pacman.position.x, enemy.position.y - pacman.position.y) < enemy.radius + pacman.radius) {
             location.reload();
         }
         const collisions = [];
@@ -310,16 +314,16 @@ function draw() {
     })
     // Drawing the pacman : 
     pacman.draw();
-    if(pacman.velocity.x > 0){
+    if (pacman.velocity.x > 0) {
         pacman.rotation = 0;
     }
-    else if(pacman.velocity.x < 0){
+    else if (pacman.velocity.x < 0) {
         pacman.rotation = Math.PI;
     }
-    else if(pacman.velocity.y > 0){
+    else if (pacman.velocity.y > 0) {
         pacman.rotation = Math.PI / 2;
     }
-    else if(pacman.velocity.y < 0){
+    else if (pacman.velocity.y < 0) {
         pacman.rotation = Math.PI * 1.5;
     }
 }
