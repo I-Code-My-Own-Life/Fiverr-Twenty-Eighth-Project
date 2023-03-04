@@ -16,7 +16,7 @@ const pellets = [];
 const enemies = [];
 let score = 0;
 // Let's make our map : 
-// In this map "-" represents a boundary , "." represents a pellet , * represents an enemy and " " represents a blank space : 
+// In this map "-" represents a boundary , "." represents a pellet , "*" represents an enemy and " " represents a blank space : 
 const map = [
     ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
     ['-', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '-'],
